@@ -6,11 +6,15 @@ async function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        // autoHideMenuBar: true,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
     });
 
     // USING await BECAUSE IT CAN TAKE SOME TIME TO RENDER THE FILE
     await mainWindow.loadFile('src/pages/editor/index.html');
+    // mainWindow.webContents.openDevTools();
 }
 
 // ARQUIVO
@@ -25,6 +29,8 @@ function createNewFile() {
         path: app.getPath('documents')+'/novo-arquivo.txt'  // QUANDO CRIAR OUTRO ARQUIVO, A JANELA VAI ABRIR NA PASTA DE DOCUMENTOS E TERÁ POR PADRÃO O NOME novo-arquivo.txt
     };
     // console.log(file); // para visualizar o caminho dos documentos
+
+    mainWindow.webContents.send('set-file', file);
 }
 
 // TEMPLATE MENU
