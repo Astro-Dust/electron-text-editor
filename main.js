@@ -9,8 +9,16 @@ async function createWindow() {
         autoHideMenuBar: true,
     });
 
+    // USING await BECAUSE IT CAN TAKE SOME TIME TO RENDER THE FILE
     await mainWindow.loadFile('src/pages/editor/index.html');
 }
 
 // WHEN READY, THIS IS GOING TO CALL THE createWindow FUNCTION
 app.whenReady().then(createWindow);
+
+// IF THE USER IS USING macOS, THIS WILL FORCE THE WINDOW TO OPEN
+app.on('activate', () => {
+    if(BrowserWindow.getAllWindows().length == 0) {
+        createWindow();
+    }
+})
