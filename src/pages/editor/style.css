@@ -1,0 +1,27 @@
+html, body {
+    /* para ocupar toda a janela */
+    width: 100%;
+    height: 100%;
+    /* fazendo o reset */
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* já que é um bloco de notas, a textarea ocupa toda a janela */
+#text {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    color: #1c1c1c;
+    font-size: 18px;
+    padding: 5px;
+}
+
+#text:focus {
+    outline: none;
+}
